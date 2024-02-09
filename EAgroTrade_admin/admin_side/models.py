@@ -102,8 +102,8 @@ class EAuction(models.Model):
 
 class EAuctionUserDetail(models.Model):
     # e_auction_user_detail_id=models.AutoField(primary_key=True)
-    user_id=models.ForeignKey(User, on_delete=models.CASCADE)
-    e_auction_id=models.ForeignKey(EAuction, on_delete=models.CASCADE)
+    user_id=models.ForeignKey(User,primary_key=True, on_delete=models.CASCADE)
+    e_auction_id=models.ForeignKey(EAuction, primary_key=True,on_delete=models.CASCADE)
     bidPrice=models.FloatField(null=True)
     # round=models.IntegerField(null=True)
     bidDateTime=models.DateTimeField(null=True)
