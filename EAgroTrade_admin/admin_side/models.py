@@ -1,6 +1,6 @@
 from django.db import models
-from viewflow.fields import CompositeKey
-# from cpkmodel import CPkModel
+# from viewflow.fields import CompositeKey
+from cpkmodel import CPkModel
 
 # Create your models here.
 # class City(models.Model):
