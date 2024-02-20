@@ -1,6 +1,7 @@
 from django.db import models
 # from viewflow.fields import CompositeKey
 from cpkmodel import CPkModel
+from django.utils.html import mark_safe
 
 # Create your models here.
 # class City(models.Model):
@@ -62,8 +63,10 @@ class Product_category(models.Model):
     product_category_id=models.AutoField(primary_key=True)
     product_category_name=models.CharField(null=True,max_length=20)
 #    here below too blob will come as datatype
-    product_category_image=models.TextField(null=True)
-
+    # product_category_image=models.TextField(null=True)
+    product_category_image=models.ImageField(upload_to='pc_images/',null=True)
+    def img_preview(self): #new
+        return mark_safe('<img src = /"{url}" width = "300"/>'.format( url = self.product_img.url))
 # class Sub_product_category(models.Model):
 #     sub_product_category_id=models.AutoField(primary_key=True)
 #     sub_product_category_name=models.CharField(null=True,max_length=20)
