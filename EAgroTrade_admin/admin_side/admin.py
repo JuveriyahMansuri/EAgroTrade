@@ -16,6 +16,7 @@ class AreaAdmin(admin.ModelAdmin):
     
     list_display=('pincode','area_name',)
     list_editable=('area_name',)
+    # list_display_links =('pincode',)
     list_per_page = 5
     search_fields = ('pincode','area_name',)
     list_filter = ('pincode','area_name',)
@@ -23,8 +24,8 @@ class UserAdmin(admin.ModelAdmin):
     def image_tag(self, obj):
         return format_html('<img src="{}" style="max-width:200px; max-height:200px"/>'.format(obj.display_picture))
     
-    list_display=('user_id','first_name','last_name','email','mobile','image_tag','address','user_type_id','pincode','password','security_question','security_answer')
-    list_editable=('first_name','last_name','email','mobile','address','user_type_id','pincode','password','security_question','security_answer')
+    list_display=('user_id','first_name','last_name','email','mobile','image_tag','address','shop_no','shop_name','street_name','user_type_id','pincode','password','security_question','security_answer','language_preference','business_name','establishment_year','business_description','gst_no','licence_no','licence_image','weekly_off',)
+    list_editable=('first_name','last_name','email','mobile','address','shop_no','shop_name','street_name','user_type_id','pincode','password','security_question','security_answer','language_preference','business_name','establishment_year','business_description','gst_no','licence_no','licence_image','weekly_off',)
     list_per_page = 5
     search_fields = ('user_id','first_name','last_name')
     list_filter = ('user_id','first_name','last_name')
@@ -87,7 +88,33 @@ class ProductPhotosAdmin(admin.ModelAdmin):
     search_fields =('product_photos_id','product_photo','product_id')
     list_filter = ('product_photos_id','product_id',)
     
+class EAuctionAdmin(admin.ModelAdmin):
+    list_display=('e_auction_id','e_auction_start_date_time','e_auction_end_date_time','opening_price','quantity','e_auction_cancel','isCompleted','e_auction_description','product_id')
+    list_editable=('e_auction_start_date_time','e_auction_end_date_time','opening_price','quantity','e_auction_cancel','isCompleted','e_auction_description','product_id')
+    list_per_page = 5
+    #   QUERY IN BELOW (what fields should be considered)
+    # search_fields =('product_photos_id','product_photo','product_id')    
+    # list_filter = ('product_photos_id','product_id',)
+
+class EAuctionUserDetailAdmin(admin.ModelAdmin):
+    list_display=('user_id','e_auction_id','bidPrice','bidDateTime','isCancel',)
+    list_editable=('bidPrice','bidDateTime','isCancel',)
+    list_per_page = 5
+    search_fields =('e_auction_id',)
+    list_filter = ('e_auction_id',)
+    list_display_links=('user_id','e_auction_id',)
+class DeliveryAdmin(admin.ModelAdmin):
+    list_display=('delivery_id','is_delivery_charges_paid','shop_no','shop_name','street_name','pincode','delivery_status','status_date_time','estimated_delivery_date_time','delivery_charges','isDelivered','eAuction_id',)
+    list_editable=('is_delivery_charges_paid','shop_no','shop_name','street_name','pincode','delivery_status','status_date_time','estimated_delivery_date_time','delivery_charges','isDelivered','eAuction_id',)
+
+    list_per_page = 5
+    #   QUERY BELOW
+    search_fields =('delivery_id',)
+    list_filter = ('delivery_id',)
     
+   
+  
+ 
 # class ProductDetailsAdmin(admin.ModelAdmin):
 #     list_display=('product_detail_id','price','quantity','product_date','product_id')
 #     list_editable=('price','quantity','product_date')
@@ -106,5 +133,8 @@ admin.site.register(Payment,PaymentAdmin)
 admin.site.register(Product,ProductAdmin)
 admin.site.register(Product_category,ProductCategoryAdmin)
 # admin.site.register(Sub_product_category,SubProductCategoryAdmin)
+admin.site.register(EAuction,EAuctionAdmin)
+admin.site.register(Delivery,DeliveryAdmin)
+admin.site.register(EAuctionUserDetail,EAuctionUserDetailAdmin)
 admin.site.register(Product_photos,ProductPhotosAdmin)
 # admin.site.register(ProductDetail,ProductDetailsAdmin)

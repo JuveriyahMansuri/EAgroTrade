@@ -11,7 +11,7 @@ from django.utils.html import mark_safe
 #         return self.city_name
        
 class Area(models.Model):
-    pincode=models.AutoField(primary_key=True)
+    pincode=models.IntegerField(primary_key=True)
     area_name=models.CharField(null=True,max_length=50)
     # city_id=models.ForeignKey(City, on_delete=models.CASCADE)
     def __str__(self):

@@ -20,7 +20,7 @@ import 'package:wholesaler_frontend/lib/wholesaler/sample.dart';
 void main() {
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
-    home: Third_authentication(),
+    home: Payment(),
   ));
 }
 
