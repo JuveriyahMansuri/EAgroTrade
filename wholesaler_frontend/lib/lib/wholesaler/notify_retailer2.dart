@@ -31,43 +31,108 @@ class NotifyRetailer extends StatelessWidget {
                        child:Column(
                          mainAxisAlignment: MainAxisAlignment.center,
                          children: [
-                          SizedBox(height: 20,),
-                           Container(width: 100,height:100,child: Image.asset("C:/Users/Juveriyah/Desktop/CAPSTONE_PROJECT/EAgroTrade/wholesaler_frontend/assets/potato.jpg")),
-                           SizedBox(height: 30,),
-                           Container(child:Text("Potato",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 22),),),
-                         ],
+                         SizedBox(height: 20),
+              Stack(
+                children: [
+                  Container(
+                    height: 180,
+                    width: 180,
+                    decoration: BoxDecoration(
+                      color: Color.fromARGB(204, 255, 246,
+                            169), // Background color of the container
+                      borderRadius: BorderRadius.circular(
+                          10), // Border radius of the container
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        SizedBox(
+                          height: 5,
+                        ),
+                        Container(
+                            width: 120,
+                            height: 120,
+                            child: Image.asset("potato.jpg")),
+                        SizedBox(
+                          height: 5,
+                        ),
+                        Container(
+                          child: Text(
+                            "Potato",
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 20),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ), ],
                        ),
                     ),
-                    SizedBox(height: 20,),
+                    SizedBox(height: 40,),
                         // start opening price textbox
-                        Container(
-                child:SizedBox(width: 400,
-                    child: Text("Opening Price : ₹ 400",style: TextStyle(fontSize: 18),),
-                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Container(
+                                          child:SizedBox(width: 400,
+                                              child: Row(
+                                                children: [
+                                                  Text("Opening Price : ₹ ",style: TextStyle(fontSize: 18,fontWeight: FontWeight.w400),),
+                                                 Text("400",style: TextStyle(fontSize: 18,fontWeight: FontWeight.w400),),
+                                                
+                                                
+                                                ],
+                                              ),
+                                                
+                          ),
+                          ),
                         ),
                         SizedBox(height:30),
                     // start qty textbox
-                    Container(
-                      child: SizedBox(width:400,
-                        child: Row(
-                          
-                           mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Container(child: Text("Qty : 20 Kgs",style: TextStyle(fontSize: 18),)),
-                            SizedBox(width: 60,),
-                            Container(
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Container(
+                        child: SizedBox(width:400,
+                          child: Row(
                             
-                               ),
-                          ],
+                             mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Container(child: Row(
+                                                children: [
+                                                  Text("Quantity : ",style: TextStyle(fontSize: 18,fontWeight: FontWeight.w400),),
+                                                 Text("20",style: TextStyle(fontSize: 18,fontWeight: FontWeight.w400),),
+                                                  Text(" kgs",style: TextStyle(fontSize: 18,fontWeight: FontWeight.w400),),
+                                                
+                                                
+                                                ],
+                                              ),
+                              ),
+                              SizedBox(width: 60,),
+                              Container(
+                              
+                                 ),
+                            ],
+                          ),
                         ),
                       ),
                     ),
                     SizedBox(height:30),
                        // start final price textbox
-                        Container(
-                child:SizedBox(width: 400,
-                    child: Text("Final Price : ₹ 1200",style: TextStyle(fontSize: 18),),
-                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Container(
+                                          child:SizedBox(width: 400,
+                                           child: Row(
+                                                children: [
+                                                  Text("Final Price : ₹ ",style: TextStyle(fontSize: 18,fontWeight: FontWeight.w400),),
+                                                 Text("600",style: TextStyle(fontSize: 18,fontWeight: FontWeight.w400),),
+                                                
+                                                
+                                                ],
+                                              ),  
+                                                 ),
+                          ),
                         ),
                         SizedBox(height:30),
                      // start start date time textbox
@@ -82,24 +147,45 @@ class NotifyRetailer extends StatelessWidget {
                     //    ),
                     // SizedBox(height:30),
                         // start end date time textbox
-                    Container(
-                      child: SizedBox(width:400,
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Container(
+                        child: SizedBox(width:400,
+                           
+                            child:Container(
+                              child: Row(
+                                                children: [
+                                                  Text("Duration : ",style: TextStyle(fontSize: 18,fontWeight: FontWeight.w400),),
+                                                 Text("2 hrs",style: TextStyle(fontSize: 18,fontWeight: FontWeight.w400),),
+                                                
+                                                
+                                                ],
+                                              ),
+                            ),
+                            
+                            // here below we will place date time picker
                          
-                          child:Container(child: Text("Duration : 2 hours",style: TextStyle(fontSize: 18),)),
                           
-                          // here below we will place date time picker
-                       
-                        
-                      ),
-                    
-                       ),
+                        ),
+                      
+                         ),
+                    ),
                        SizedBox(height:30),
                   
                     // start description textbox
-                        Container(
-                child:SizedBox(width: 400,
-                    child: Text("Winner : Ronald Richards",style: TextStyle(fontSize: 18),),
-                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Container(
+                                          child:SizedBox(width: 400,
+                                             child: Row(
+                                                children: [
+                                                  Text("Winner : ",style: TextStyle(fontSize: 18,fontWeight: FontWeight.w400),),
+                                                 Text("Ronald Smith",style: TextStyle(fontSize: 18,fontWeight: FontWeight.w400),),
+                                                
+                                                
+                                                ],
+                                              ),   ),
+                          ),
                         ),
                     SizedBox(height:20),
                     // start notify btn
@@ -118,21 +204,33 @@ class NotifyRetailer extends StatelessWidget {
       ),
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: Colors.white,
+      
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
-            label: '',
+            label: 'Home',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.shopping_bag),
-            label: '',
+            label: 'My Auctions',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.search),
+            label: 'Search',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.account_circle_outlined),
-            label: '',
+            label: 'Account',
           ),
         ],
+        selectedItemColor: Colors.lightGreen,
+        unselectedItemColor: Colors.grey,
+        currentIndex: 2,
+        onTap: (int index) {
+          // Handle navigation to different pages based on index
+        },
       ),
+
     );
   }
 }

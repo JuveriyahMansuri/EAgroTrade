@@ -10,7 +10,9 @@ class MyAuction extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
+        backgroundColor: Colors.white,
         title: Text(
           "My Auctions",
           style: TextStyle(fontWeight: FontWeight.bold),
@@ -33,6 +35,7 @@ class MyAuction extends StatelessWidget {
         ],
       ),
       body: SingleChildScrollView(
+          scrollDirection: Axis.vertical,
         child: Column(
           children: [
             Padding(
@@ -97,7 +100,7 @@ class MyAuction extends StatelessWidget {
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Image.asset(
-                                'potato.jpg', // Replace with your actual image asset
+                                'potato.jpeg', // Replace with your actual image asset
                                 width: 100, // Adjust the size as needed
                                 height: 100, // Adjust the size as needed
                               ),
@@ -224,7 +227,7 @@ class MyAuction extends StatelessWidget {
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Image.asset(
-                                'tomato.jpg', // Replace with your actual image asset
+                                'tomato.jpeg', // Replace with your actual image asset
                                 width: 100, // Adjust the size as needed
                                 height: 100, // Adjust the size as needed
                               ),
@@ -373,7 +376,7 @@ class MyAuction extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Image.asset(
-                          'brinjal.jpg', // Replace with your actual image asset
+                          'brinjal.jpeg', // Replace with your actual image asset
                           width: 100, // Adjust the size as needed
                           height: 100, // Adjust the size as needed
                         ),
@@ -559,7 +562,9 @@ class MyAuction extends StatelessWidget {
                           ],
                         ),
                       ),
+                     
                       Align(
+                        
                         alignment: Alignment.topRight,
                         child: IconButton(
                           icon: Icon(Icons.delete,
@@ -599,6 +604,7 @@ class MyAuction extends StatelessWidget {
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Colors.white,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.home),

@@ -147,23 +147,7 @@ class _OrderStatusState extends State<OrderStatus> {
          ),
        ),
       ),
-       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Colors.white,
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: '',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.shopping_bag),
-            label: '',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.account_circle_outlined),
-            label: '',
-          ),
-        ],
-      ),
+      
     );
   }
 }

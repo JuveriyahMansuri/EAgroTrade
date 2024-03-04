@@ -1,10 +1,53 @@
 import 'package:flutter/material.dart';
 import 'package:input_quantity/input_quantity.dart';
 import 'package:flutter/cupertino.dart'; // used  for date and time
+// import 'package:omni_datetime_picker/src/omni_datetime_picker.dart';
 
-class AddAuction extends StatelessWidget {
+class AddAuction extends StatefulWidget {
   const AddAuction({super.key});
 
+  @override
+  State<AddAuction> createState() => _AddAuctionState();
+}
+
+class _AddAuctionState extends State<AddAuction> {
+  late DateTime _selectedDateTime; // date time
+  // below code is of date time
+  @override
+  void initState() {
+    super.initState();
+    _selectedDateTime = DateTime.now();
+  }
+
+  Future<void> _selectDateTime(BuildContext context) async {
+    final DateTime? picked = await showDatePicker(
+      context: context,
+      initialDatePickerMode: DatePickerMode.day,
+      initialDate: _selectedDateTime,
+      firstDate: DateTime.now(),
+      lastDate: DateTime(2100),
+    );
+    if (picked != null) {
+      final TimeOfDay? pickedTime = await showTimePicker(
+        context: context,
+        initialTime: TimeOfDay.fromDateTime(_selectedDateTime),
+      );
+      if (pickedTime != null) {
+        setState(() {
+          _selectedDateTime = DateTime(
+            picked.day,
+            picked.month,
+            picked.year,
+          
+            pickedTime.hour,
+            pickedTime.minute,
+          );
+        });
+      }
+    }
+  }
+
+  // end code of date time
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -155,8 +198,21 @@ class AddAuction extends StatelessWidget {
                             SizedBox(
                               width: 60,
                             ),
+                            // below is  date time picker
                             Container(
-                              
+                              child: Column(
+                                children: [
+                                  Text(
+          '$_selectedDateTime',
+          style: TextStyle(fontSize:12),
+        ),
+        SizedBox(height: 20),
+        ElevatedButton(
+          onPressed: () => _selectDateTime(context),
+          child: Text('click'),
+        ),
+                                ],
+                              ),
                             ),
                           ],
                         ),

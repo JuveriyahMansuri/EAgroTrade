@@ -57,7 +57,7 @@ class _AuctionCompletedState extends State<AuctionCompleted> with SingleTickerPr
                   SizedBox(height: 70,),
                   Container(child:Text("Auction Completed!!",style:TextStyle(fontWeight: FontWeight.bold),)),
                   SizedBox(height: 70,),
-                  Container(child:Text("Your Potato Auction is Completed & Highest price is for ₹400 won by Ronald.. Let her notify!!!")),
+                  Container(child:Text("Your Potato Auction is Completed & Highest price is for ₹600 won by Ronald Smith.. Let him notify!!!")),
                   SizedBox(height: 70,),
                   Container(
                 child:SizedBox(

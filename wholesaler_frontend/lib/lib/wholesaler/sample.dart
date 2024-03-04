@@ -10,12 +10,34 @@ class Sample extends StatelessWidget {
         child: Column(
           children: [
             SizedBox(
-              height: 20,
+              height: 40,
             ),
-            Expanded(
+            SingleChildScrollView(
+              scrollDirection: Axis.vertical,
+              physics: const BouncingScrollPhysics(),
               child: ListView(
-                scrollDirection: Axis.horizontal,
+                scrollDirection: Axis.vertical,
                 children: [
+                  Text("hii"),
+                  Text("hii"),
+                  Text("hii"),
+                  Text("hii"),
+                  Text("hii"),
+                  Text("hii"),
+                  Text("hii"),
+                ],
+              ),
+            ),
+            SizedBox(
+              height: 40,
+            ),
+            SingleChildScrollView(
+              scrollDirection: Axis.vertical,
+              physics: const BouncingScrollPhysics(),
+              child: Column(
+                children: [
+                  Text("hello"),
+                  Text("hello"),
                   Text("hello"),
                   Text("hello"),
                   Text("hello"),
@@ -24,10 +46,6 @@ class Sample extends StatelessWidget {
                 ],
               ),
             ),
-            SizedBox(
-              height: 40,
-            ),
-            SizedBox(height: 20),
           ],
         ),
       ),

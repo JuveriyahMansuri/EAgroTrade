@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
-class Orders extends StatelessWidget {
-  const Orders({super.key});
+class Payment extends StatelessWidget {
+  const Payment({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      
       appBar: AppBar(
         backgroundColor: Colors.white,
       
         title: Text(
-          "Orders",
+          "Payment",
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
         centerTitle: true,
@@ -104,7 +103,7 @@ class Orders extends StatelessWidget {
                         child: ElevatedButton(
                           onPressed: () {
                             // Handle your Start functionality
-                            print('Start clicked');
+                            print('Successful clicked');
                           },
                           style: ElevatedButton.styleFrom(
                             primary: Colors.white, // Button background color
@@ -118,7 +117,7 @@ class Orders extends StatelessWidget {
                                       Colors.lightGreen), // Button border color
                             ),
                           ),
-                          child: Text('Order Status'),
+                          child: Text('Successful'),
                         ),
                       ),     
                           ),
