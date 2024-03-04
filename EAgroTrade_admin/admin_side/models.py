@@ -90,12 +90,14 @@ class Product(models.Model):
 
 class EAuction(models.Model):
     e_auction_id=models.AutoField(primary_key=True)
-    e_auction_date_time=models.DateTimeField(null=True)
+    e_auction_start_date_time=models.DateTimeField(null=True)
+    e_auction_end_date_time=models.DateTimeField(null=True)
+   
     opening_price=models.FloatField(null=True)
     quantity=models.IntegerField(null=True)
     e_auction_cancel=models.BooleanField(null=True)
     isCompleted=models.BooleanField(null=True)
-    e_auction_duration=models.TimeField(null=True)
+    # e_auction_duration=models.TimeField(null=True)
     # final_price=models.FloatField(null=True)
     # total_rounds=models.IntegerField(null=True)
     e_auction_description=models.TextField(null=True)
@@ -147,8 +149,9 @@ class Payment(models.Model):
     transaction_id=models.IntegerField(null=True)
     e_auction_id=models.ForeignKey(EAuction, on_delete=models.CASCADE,null=True)
    
-class delivery(models.Model):
+class Delivery(models.Model):
     delivery_id=models.AutoField(primary_key=True)
+    is_delivery_charges_paid=models.BooleanField(null=True)
     address=models.TextField(null=True)
     shop_no=models.IntegerField(null=True)
     shop_name=models.CharField(null=True,max_length=20)
@@ -157,7 +160,7 @@ class delivery(models.Model):
     #  here below put options
     delivery_status=models.CharField(null=True,max_length=45)
     status_date_time=models.DateTimeField(null=True)
-    estimated_delivery=models.DateTimeField(null=True)
+    estimated_delivery_date_time=models.DateTimeField(null=True)
     delivery_charges=models.FloatField(null=True)
     isDelivered=models.BooleanField(null=True)
     eAuction_id=models.ForeignKey(EAuction, on_delete=models.CASCADE)
