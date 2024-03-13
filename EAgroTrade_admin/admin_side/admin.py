@@ -1,5 +1,6 @@
 from django.contrib import admin
 from admin_side.models import *
+from django.utils.html import format_html
 
 # below is for img
 from django.utils.html import format_html
@@ -23,12 +24,18 @@ class AreaAdmin(admin.ModelAdmin):
 class UserAdmin(admin.ModelAdmin):
     def image_tag(self, obj):
         return format_html('<img src="{}" style="max-width:200px; max-height:200px"/>'.format(obj.display_picture))
+    # def licence_image(self, obj):
+    #     return format_html('<img src="{}" style="max-width:200px; max-height:200px"/>'.format(obj.licence_image))
+    # def display_picture(self, obj):
+    #     return format_html('<img src="{}" style="max-width:200px; max-height:200px"/>'.format(obj.display_picture))
+  
+    # readonly_fields = ['img_preview']
     
     list_display=('user_id','first_name','last_name','email','mobile','image_tag','address','shop_no','shop_name','street_name','user_type_id','pincode','password','security_question','security_answer','language_preference','business_name','establishment_year','business_description','gst_no','licence_no','licence_image','weekly_off',)
     list_editable=('first_name','last_name','email','mobile','address','shop_no','shop_name','street_name','user_type_id','pincode','password','security_question','security_answer','language_preference','business_name','establishment_year','business_description','gst_no','licence_no','licence_image','weekly_off',)
     list_per_page = 5
     search_fields = ('user_id','first_name','last_name')
-    list_filter = ('user_id','first_name','last_name')
+    list_filter = ('user_id','first_name','last_name','user_type_id')
     
 
     
@@ -43,30 +50,23 @@ class PaymentAdmin(admin.ModelAdmin):
     search_fields = ('payment_id','payment_method','amount','payment_date_time','transaction_id','e_auction_id')
     list_filter = ('payment_id',)
     
-# class OrderDetailAdmin(admin.ModelAdmin):
-#     list_display=('product_id','order_id','quantity','price')
-#     list_editable=('quantity','price')
-#     list_per_page = 5
-#     search_fields = ('product_id','order_id','quantity','price')
-#     list_filter = ('order_id','product_id')
+
     
     
-class ProductAdmin(admin.ModelAdmin):
-    list_display=('product_id','product_name','description','unit_of_measurement','user_id','product_category_id')
-    list_editable=('product_name','description')
-    list_per_page = 5
-    search_fields =('product_id','product_name','description','unit_of_measurement','user_id','product_category_id')
-    list_filter = ('product_id','user_id','product_category_id')
-    
+# @admin.register(Product_product_photosMerge)
+# class MergedModelAdmin(admin.ModelAdmin):
+#     list_display = ('product_id', 'product_name', 'description', 'unit_of_measurement','user_id','product_category_id','product_photo')
 
 class ProductCategoryAdmin(admin.ModelAdmin):
-
+    # def img_preview(self, obj): #new
+    #     return format_html('<img src = /"{url}" width = "300"/>'.format( url = self.product_category_image.url))
+ 
     def image_tag(self, obj):
         return format_html('<img src="{}" style="max-width:200px; max-height:200px"/>'.format(obj.product_category_image))
     # def update_image(self,obj):
     #     return product_category_image=models.ImageField(upload_to='pc_images/',null=True)
 
-    readonly_fields = ['img_preview']
+    # readonly_fields = ['img_preview']
     list_display=('product_category_id','product_category_name','image_tag')
     list_editable=('product_category_name',)
     list_per_page = 5
@@ -74,14 +74,20 @@ class ProductCategoryAdmin(admin.ModelAdmin):
     list_filter = ('product_category_id','product_category_name')
     
 
-# class SubProductCategoryAdmin(admin.ModelAdmin):
-#     list_display=('sub_product_category_id','sub_product_category_name','sub_product_category_image')
-#     list_editable=('sub_product_category_name','sub_product_category_image')
-#     list_per_page = 5
-#     search_fields =('sub_product_category_id','sub_product_category_name','sub_product_category_image')
-#     list_filter = ('sub_product_category_id','sub_product_category_name','product_category_id')
+
+class ProductAdmin(admin.ModelAdmin):
+    list_display=('product_id','product_name','description','unit_of_measurement','user_id','product_category_id')
+    list_editable=('product_name','description')
+    list_per_page = 5
+    search_fields =('product_id','product_name','description','unit_of_measurement','user_id','product_category_id')
+    list_filter = ('product_id','user_id','product_category_id')
+
+
 
 class ProductPhotosAdmin(admin.ModelAdmin):
+    def product_photo(self, obj):
+        return format_html('<img src="{}" style="max-width:200px; max-height:200px"/>'.format(obj.product_photo))
+
     list_display=('product_photos_id','product_photo','product_id')
     list_editable=('product_photo',)
     list_per_page = 5
@@ -105,7 +111,7 @@ class EAuctionUserDetailAdmin(admin.ModelAdmin):
     list_display_links=('user_id','e_auction_id',)
 class DeliveryAdmin(admin.ModelAdmin):
     list_display=('delivery_id','is_delivery_charges_paid','shop_no','shop_name','street_name','pincode','delivery_status','status_date_time','estimated_delivery_date_time','delivery_charges','isDelivered','eAuction_id',)
-    list_editable=('is_delivery_charges_paid','shop_no','shop_name','street_name','pincode','delivery_status','status_date_time','estimated_delivery_date_time','delivery_charges','isDelivered','eAuction_id',)
+    # list_editable=('is_delivery_charges_paid','shop_no','shop_name','street_name','pincode','delivery_status','status_date_time','estimated_delivery_date_time','delivery_charges','isDelivered','eAuction_id',)
 
     list_per_page = 5
     #   QUERY BELOW
@@ -115,26 +121,18 @@ class DeliveryAdmin(admin.ModelAdmin):
    
   
  
-# class ProductDetailsAdmin(admin.ModelAdmin):
-#     list_display=('product_detail_id','price','quantity','product_date','product_id')
-#     list_editable=('price','quantity','product_date')
-#     list_per_page = 5
-#     search_fields =('product_detail_id','price','quantity','product_date','product_id')
-#     list_filter = ('product_detail_id','product_id')
 
 
-# admin.site.register(City,CityAdmin)
+
 admin.site.register(User_type,UserTypeAdmin)
 admin.site.register(Area,AreaAdmin)
 admin.site.register(User,UserAdmin)
-# admin.site.register(Order,OrderAdmin)
+
 admin.site.register(Payment,PaymentAdmin)
-# admin.site.register(OrderDetail,OrderDetailAdmin)
+
 admin.site.register(Product,ProductAdmin)
 admin.site.register(Product_category,ProductCategoryAdmin)
-# admin.site.register(Sub_product_category,SubProductCategoryAdmin)
 admin.site.register(EAuction,EAuctionAdmin)
 admin.site.register(Delivery,DeliveryAdmin)
 admin.site.register(EAuctionUserDetail,EAuctionUserDetailAdmin)
 admin.site.register(Product_photos,ProductPhotosAdmin)
-# admin.site.register(ProductDetail,ProductDetailsAdmin)
