@@ -12,10 +12,22 @@ from .serializers import *
 class AreaViewSet(viewsets.ModelViewSet):
     queryset=Area.objects.all()
     serializer_class=AreaSerializer
+    def post(self, request, format=None):
+        areavar = AreaSerializer(data=request.data)
+        if areavar.is_valid():
+            areavar.save()
+            return Response(areavar.data, status=status.HTTP_201_CREATED)
+        return Response(areavar.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class User_typeViewSet(viewsets.ModelViewSet):
     queryset=User_type.objects.all()
     serializer_class=User_typeSerializer
+    def post(self, request, format=None):
+        user_typevar = User_typeSerializer(data=request.data)
+        if user_typevar.is_valid():
+            user_typevar.save()
+            return Response(user_typevar.data, status=status.HTTP_201_CREATED)
+        return Response(user_typevar.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class Product_categoryViewSet(viewsets.ModelViewSet):
     queryset=Product_category.objects.all()
@@ -24,6 +36,13 @@ class Product_categoryViewSet(viewsets.ModelViewSet):
 class UserViewSet(viewsets.ModelViewSet):
     queryset=User.objects.all()
     serializer_class=UserSerializer
+    def post(self, request, format=None):
+        uservar = UserSerializer(data=request.data)
+        if uservar.is_valid():
+            uservar.save()
+            return Response(uservar.data, status=status.HTTP_201_CREATED)
+        return Response(uservar.errors, status=status.HTTP_400_BAD_REQUEST)
+    
     
 class ProductViewSet(viewsets.ModelViewSet):
     queryset=Product.objects.all()

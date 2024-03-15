@@ -1,10 +1,11 @@
 from rest_framework.serializers import PrimaryKeyRelatedField
+from rest_framework.serializers import *
 from rest_framework import serializers
 from .models import *
 
 
 # Area
-class AreaSerializer(serializers.HyperlinkedModelSerializer):
+class AreaSerializer(serializers.ModelSerializer):
     class Meta:
         model=Area
         fields='__all__'
@@ -19,7 +20,7 @@ class AreaSerializer(serializers.HyperlinkedModelSerializer):
         return data
 
 # User_type
-class User_typeSerializer(serializers.HyperlinkedModelSerializer):
+class User_typeSerializer(serializers.ModelSerializer):
     class Meta:
         model=User_type
         fields='__all__'
@@ -34,7 +35,7 @@ class User_typeSerializer(serializers.HyperlinkedModelSerializer):
         return data
 
 # Product_category
-class Product_categorySerializer(serializers.HyperlinkedModelSerializer):
+class Product_categorySerializer(serializers.ModelSerializer):
     class Meta:
         model=Product_category
         # fields='__all__'
@@ -50,7 +51,7 @@ class Product_categorySerializer(serializers.HyperlinkedModelSerializer):
         return data
     
 #  User
-class UserSerializer(serializers.HyperlinkedModelSerializer):
+class UserSerializer(serializers.ModelSerializer):
     # user_type_id=PrimaryKeyRelatedField(many=True,queryset=User_type.objects.all())
     # pincode=PrimaryKeyRelatedField(many=True,queryset=Area.objects.all())
     # user_type_id = serializers.IntegerField(source='User_type.user_type_id')
@@ -72,10 +73,19 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
     #     # return user_type_id,pincode
 
 #  Product
-class ProductSerializer(serializers.HyperlinkedModelSerializer):
+class ProductSerializer(serializers.ModelSerializer):
     # user_id=UserSerializer()
     # product_category_id=Product_categorySerializer()
     class Meta:
         model=Product
         fields='__all__'
+    
+    # def create(self, validated_data):
+    #     user_data = validated_data.pop('user_id')
+    #     user_id = User.objects.filter(**user_data)
+    #     user_id = User.objects.filter(user_id=user_id, **validated_data)
+    #     product_category_data = validated_data.pop('product_category_name')
+    #     product_category_id = Product_category.objects.filter(**product_category_data)
+    #     product_category_id = Product_category.objects.filter(product_category_id=product_category_id, **validated_data)
         
+    #     return user_id,product_category_id
