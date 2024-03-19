@@ -4,13 +4,18 @@ from .views import *
 from rest_framework import routers
 # from rest_framework.routers import DefaultRouter
 # from admin_side import views
-
+# question ---------- to show only users that are wholesaler in dropdown of product add ?? do we need to give it in this api or in flutter ?
 routers=routers.DefaultRouter()
 routers.register(r'area',AreaViewSet)
 routers.register(r'user_type',User_typeViewSet)
 routers.register(r'product_category',Product_categoryViewSet)
 routers.register(r'user',UserViewSet)
 routers.register(r'product',ProductViewSet)
+routers.register(r'eauction',EAuctionViewSet)
+routers.register(r'eauctionuserdetail',EAuctionUserDetailViewSet)
+routers.register(r'productphotos',Product_photosViewSet)
+routers.register(r'payment',PaymentViewSet)
+routers.register(r'delivery',DeliveryViewSet)
 
 urlpatterns = [
     path('',include(routers.urls)),

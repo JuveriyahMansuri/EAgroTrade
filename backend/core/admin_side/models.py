@@ -2,6 +2,7 @@ from django.db import models
 # from viewflow.fields import CompositeKey
 from cpkmodel import CPkModel
 from django.utils.html import mark_safe
+# from composite_foreignkey.db.models import CompositeForeignKey
 
 # Create your models here.
 
@@ -102,16 +103,17 @@ class EAuction(models.Model):
         return str(self.e_auction_id)   
 
 class EAuctionUserDetail(models.Model):
-  
-    cpk_user_id=models.ForeignKey(User, on_delete=models.CASCADE)
-    cpk_e_auction_id=models.ForeignKey(EAuction,on_delete=models.CASCADE)
-    bidPrice=models.FloatField(null=True)
+    e_auction_user_detail_id=models.AutoField(primary_key=True)
+    cpk_user_id=models.ForeignKey(User, on_delete=models.CASCADE,null=True,blank=True)
+    cpk_e_auction_id=models.ForeignKey(EAuction,on_delete=models.CASCADE,null=True,blank=True)
+    bidPrice=models.FloatField(null=True,blank=True)
    
-    bidDateTime=models.DateTimeField(null=True)
-    isCancel=models.BooleanField(null=True,default=False)
+    bidDateTime=models.DateTimeField(null=True,blank=True)
+    isCancel=models.BooleanField(null=True,default=False,blank=True)
     class Meta:
-        managed = False  # for CompositePK *1
+        # managed =   # for CompositePK *1
         db_table = 'EAuctionUserDetail'
+        # constraints = [models.UniqueConstraint(fields=['cpk_user_id', 'cpk_e_auction_id'], name='composite_pk_a') ]
         unique_together = (('cpk_user_id', 'cpk_e_auction_id'),)  # for CompositePK
 
 
@@ -165,5 +167,6 @@ class Delivery(models.Model):
     eAuction_id=models.ForeignKey(EAuction, on_delete=models.CASCADE)
     def __str__(self):
         return str(self.delivery_id)
+
 
 

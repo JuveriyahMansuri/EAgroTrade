@@ -1,11 +1,12 @@
 from django.shortcuts import render
 from django.shortcuts import redirect
 from django.http import HttpResponse
-from rest_framework import viewsets,status
+from rest_framework import viewsets,status,permissions
 from rest_framework.decorators import api_view,action
 from rest_framework.response import Response
 from .models import *
 from .serializers import *
+
 # Create your views here.
 #  Area
 
@@ -36,18 +37,38 @@ class Product_categoryViewSet(viewsets.ModelViewSet):
 class UserViewSet(viewsets.ModelViewSet):
     queryset=User.objects.all()
     serializer_class=UserSerializer
-    def post(self, request, format=None):
-        uservar = UserSerializer(data=request.data)
-        if uservar.is_valid():
-            uservar.save()
-            return Response(uservar.data, status=status.HTTP_201_CREATED)
-        return Response(uservar.errors, status=status.HTTP_400_BAD_REQUEST)
+    # def post(self, request, format=None):
+    #     uservar = UserSerializer(data=request.data)
+    #     if uservar.is_valid():
+    #         uservar.save()
+    #         return Response(uservar.data, status=status.HTTP_201_CREATED)
+    #     return Response(uservar.errors, status=status.HTTP_400_BAD_REQUEST)
     
     
 class ProductViewSet(viewsets.ModelViewSet):
     queryset=Product.objects.all()
     serializer_class=ProductSerializer
+    
 
+class EAuctionViewSet(viewsets.ModelViewSet):
+    queryset=EAuction.objects.all()
+    serializer_class=EAuctionSerializer
+
+class EAuctionUserDetailViewSet(viewsets.ModelViewSet):
+    queryset=EAuctionUserDetail.objects.all()
+    serializer_class=EAuctionUserDetailSerializer
+
+class Product_photosViewSet(viewsets.ModelViewSet):
+    queryset=Product_photos.objects.all()
+    serializer_class=Product_photosSerializer
+
+class PaymentViewSet(viewsets.ModelViewSet):
+    queryset=Payment.objects.all()
+    serializer_class=PaymentSerializer
+
+class DeliveryViewSet(viewsets.ModelViewSet):
+    queryset=Delivery.objects.all()
+    serializer_class=DeliverySerializer
 
 # get
 # @api_view(['GET'])
@@ -256,3 +277,4 @@ class ProductViewSet(viewsets.ModelViewSet):
     
 #     serializer.save()
 #     return Response({'status':200,'payload':serializer.data,'message':'your data is saved'})
+
