@@ -1,6 +1,6 @@
 from django.db import models
 # from viewflow.fields import CompositeKey
-from cpkmodel import CPkModel
+# from cpkmodel import CPkModel
 from django.utils.html import mark_safe
 # from composite_foreignkey.db.models import CompositeForeignKey
 
