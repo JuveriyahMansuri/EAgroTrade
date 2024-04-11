@@ -2,6 +2,8 @@ from django.contrib import admin
 from django.urls import path,include
 from .views import *
 from rest_framework import routers
+
+
 # from rest_framework.routers import DefaultRouter
 # from admin_side import views
 # question ---------- to show only users that are wholesaler in dropdown of product add ?? do we need to give it in this api or in flutter ?
@@ -19,6 +21,10 @@ routers.register(r'delivery',DeliveryViewSet)
 
 urlpatterns = [
     path('',include(routers.urls)),
+   #  otp
+   path('send-otp/', send_otp, name='send_otp'),
+   path('verify-otp/', verify_otp, name='verify_otp'),
+
    # path('',include(router.urls)),
 #    the below get_area is a function name in views.py of admin_side
    # area

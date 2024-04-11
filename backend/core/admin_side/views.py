@@ -7,6 +7,68 @@ from rest_framework.response import Response
 from .models import *
 from .serializers import *
 
+# otp
+from django.views.decorators.csrf import csrf_exempt
+import random
+from django.core.mail import send_mail
+from django.http import JsonResponse
+
+
+def generate_otp():
+    return ''.join([str(random.randint(0, 9)) for _ in range(5)])
+
+
+@csrf_exempt
+def send_otp(request):
+    if request.method == 'POST':
+        email = request.POST.get('email')
+        otp = generate_otp()
+
+        # Store the OTP in the session or database for verification later
+        request.session['otp'] = otp  # Store OTP in session for verification
+        # Alternatively, store OTP in the database associated with the user's email
+
+        # Send OTP via email
+        try:
+            send_mail(
+                'Login OTP Verification',
+                f'Your OTP is: {otp}',
+                'emailcaptone@gmail.com',
+                ['juveriyahmansuri65@gmail.com'], #Using Static Email for OTP Send (In Postman use Static Email)
+                #[email], #Using User Input Email for OTP Send
+                fail_silently=False,
+            )
+            return JsonResponse({'success': True, 'message': 'OTP sent successfully'})
+        except Exception as e:
+            return JsonResponse({'success': False, 'message': str(e)})
+
+    return JsonResponse({'success': False, 'message': 'Invalid request method'}, status=405)
+
+
+
+
+@csrf_exempt
+def verify_otp(request):
+    if request.method == 'POST':
+        entered_otp = request.POST.get('myotp')
+
+        if request.session['otp']:  # Check if OTP is present in session
+            stored_otp = request.session['otp']
+            print(stored_otp)
+            if entered_otp == stored_otp:
+                # OTP is correct
+                del request.session['otp']  # Removing OTP from session after successful verification
+                return JsonResponse({'success': True, 'message': 'OTP verified successfully'})
+            else:
+                return JsonResponse({'success': False, 'message': 'Invalid OTP'})
+        else:
+            return JsonResponse({'success': False, 'message': 'OTP not found in session'})
+
+    else:
+        return JsonResponse({'success': False, 'message': 'Invalid request method'}, status=405)
+
+
+
 # Create your views here.
 #  Area
 

@@ -26,6 +26,7 @@ class User(models.Model):
     last_name=models.CharField(null=True,max_length=30)
     email=models.CharField(null=True,max_length=28)
     mobile=models.CharField(null=True,max_length=10)
+    otp=models.IntegerField(null=True)
     u="C:/Users/Juveriyah/Desktop/CAPSTONE_PROJECT/EAgroTrade/backend/images/user/"
     # set below display_picture datatype to blob field
     display_picture=models.ImageField(upload_to='images/',null=True)
